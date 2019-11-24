@@ -58,7 +58,7 @@ class MainViewController: UIViewController {
         self.container.addSubview(childViewController.view)
         childViewController.view.bounds = self.container.bounds
         self.view.setNeedsLayout()
-
+        
     }
 
     override func viewWillLayoutSubviews() {

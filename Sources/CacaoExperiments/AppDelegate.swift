@@ -16,7 +16,7 @@ class AppDelegate: UIApplicationDelegate {
             return false
         }
 
-        window.rootViewController = MainViewController()
+        window.rootViewController = DrawingViewController()
         window.makeKeyAndVisible()
 
         return true
