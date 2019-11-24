@@ -33,6 +33,13 @@ class DiagramView: UIView {
         label.text = "Test Label"
         addSubview(label)
 
+        UIColor.red.setStroke()
+        let littleLineMaker = UIBezierPath()
+        littleLineMaker.move(to: textRect.origin)
+        littleLineMaker.addLine(to: littleRectangle.origin)
+        littleLineMaker.lineWidth = 2
+        littleLineMaker.stroke()
+
     }
     
 
