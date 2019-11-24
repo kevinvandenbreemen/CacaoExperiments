@@ -6,7 +6,6 @@ class DrawingViewController: UIViewController, UIScrollViewDelegate {
 
     var titleView: UILabel!
     var contentScroller: UIScrollView!
-    var mainContent: UIView!
     var sidePanelContainer: UIView!
     var diagram: DiagramView!
 
@@ -26,8 +25,7 @@ class DrawingViewController: UIViewController, UIScrollViewDelegate {
         view.addSubview(sidePanel)
 
         self.diagram = DiagramView.init()
-        self.mainContent.addSubview(self.diagram)
-
+        self.contentScroller.addSubview(diagram)
     }
 
     private func setupTitle() -> UILabel {
@@ -41,9 +39,6 @@ class DrawingViewController: UIViewController, UIScrollViewDelegate {
     private func setupScrollingContent() -> UIScrollView {
         contentScroller = UIScrollView.init(frame: CGRect.init(x: 0, y: 0, width: 800, height: 600))
         contentScroller.delegate = self
-
-        self.mainContent = UIView.init()
-        contentScroller.addSubview(mainContent)
 
         return contentScroller
     }
@@ -59,7 +54,7 @@ class DrawingViewController: UIViewController, UIScrollViewDelegate {
         let titleAreaMultiplier = CGFloat(0.1)
         let sideAreaMultiplier = CGFloat(0.2)
 
-        let currentWindowArea = view.bounds
+        let currentWindowArea = view.frame
 
         let titleArea = CGRect.init(x: 0, y: 0, width: currentWindowArea.width, height: currentWindowArea.height * titleAreaMultiplier)
         self.titleView.frame = titleArea
@@ -71,13 +66,8 @@ class DrawingViewController: UIViewController, UIScrollViewDelegate {
         let scrollingArea = CGRect.init(x: (currentWindowArea.width * sideAreaMultiplier), y: currentWindowArea.height * titleAreaMultiplier, 
             width: currentWindowArea.width * (1 - sideAreaMultiplier), height: (currentWindowArea.height - (currentWindowArea.height * titleAreaMultiplier)) )
         self.contentScroller.frame = scrollingArea
-        
-        self.mainContent.frame = self.contentScroller.frame
-        self.mainContent.frame.size = CGSize.init(width: 1000, height: 1000)
 
-        self.contentScroller.contentSize = self.mainContent.frame.size
-
-        self.diagram.frame.origin = self.mainContent.bounds.origin
+        self.contentScroller.contentSize = self.diagram.intrinsicContentSize
 
         // self.diagram.frame = self.mainContent.frame
         // self.diagram.frame.size = CGSize.init(width: 100, height: 100)

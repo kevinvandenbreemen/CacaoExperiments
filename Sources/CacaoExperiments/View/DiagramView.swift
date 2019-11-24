@@ -2,6 +2,10 @@ import Cacao
 import Foundation
 
 class DiagramView: UIView {
+
+    override var intrinsicContentSize: CGSize {
+        CGSize.init(width: 1000, height: 1000)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
