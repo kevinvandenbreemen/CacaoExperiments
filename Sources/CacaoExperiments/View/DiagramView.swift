@@ -16,9 +16,22 @@ class DiagramView: UIView {
 
     override func draw(_ rect: CGRect) {
 
+        let littleRectangle = CGRect.init(x: rect.origin.x + 10, y: rect.origin.y + 10, width: 100, height: 100)
+
+        
+
         let path = UIBezierPath(rect: rect)
         UIColor.green.setFill()
         path.fill()
+
+        let littlePath = UIBezierPath.init(rect: littleRectangle)
+        littlePath.lineWidth = CGFloat(6.0)
+        littlePath.stroke()
+
+        let textRect = CGRect.init(x: rect.origin.x + 200, y: rect.origin.y+10, width: 200, height: 40)
+        let label = UILabel.init(frame: textRect)
+        label.text = "Test Label"
+        addSubview(label)
 
     }
     
